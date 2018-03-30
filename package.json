@@ -1,0 +1,23 @@
+{
+  "name": "onion-or-not",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devstart": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "request": "^2.85.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.0",
+    "nodemon": "^1.17.2"
+  }
+}
