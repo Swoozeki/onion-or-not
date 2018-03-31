@@ -10,7 +10,7 @@ app.use(express.static('./static'));
 app.use(bodyParser.json(), bodyParser.urlencoded({extended:false}));
 
 //helper function to fetch new headlines
-require('./helpers/fetchNewHeadlines.js')();
+require('./helpers/fetch-new-headlines.js')();
 
 //import routes
 require('./routes.js')(app);
