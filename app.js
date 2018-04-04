@@ -9,7 +9,10 @@ const sequelize = new Sequelize('postgres://wjzdssqo:oTdYEcAjKFQo9DlPy_SbiwYRcwe
 
 sequelize.authenticate().then(()=>console.log('database authenticated')).catch(err=>console.log(err));
 const Headline = sequelize.import('./models/Headline.js');
-app.use((req, res, next) => req.models = {Headline});
+app.use((req, res, next) => {
+    req.models = {Headline};
+    return next();
+});
 
 //setup app
 app.use(logger('tiny'));
