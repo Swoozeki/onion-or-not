@@ -9,9 +9,7 @@ let HeadlineModel;
 */
 module.exports = function (Headline) {
     HeadlineModel = Headline;
-    const lastNewFetched = getLastFetched('new');
-    const lastTopFetched = getLastFetched('top');
-    let headlines;
+    
     //in case the last fetched new headlines are over a day old
     getLastFetched('new', function(lastNewFetched){
         if (Date.now() - lastNewFetched >= millisecondsInDay) {
