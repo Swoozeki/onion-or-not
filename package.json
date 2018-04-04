@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devstart": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "webpack": "webpack"
   },
   "author": "",
   "license": "ISC",
@@ -16,11 +17,19 @@
     "express": "^4.16.3",
     "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
     "request": "^2.85.0",
     "sequelize": "^4.37.5"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
     "morgan": "^1.9.0",
-    "nodemon": "^1.17.2"
+    "nodemon": "^1.17.2",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.13"
   }
 }
