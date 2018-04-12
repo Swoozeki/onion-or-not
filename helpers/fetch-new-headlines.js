@@ -11,14 +11,16 @@ module.exports = function (Headline) {
     HeadlineModel = Headline;
     
     //in case the last fetched new headlines are over a day old
-    getLastFetched('new', function(lastNewFetched){
+    getLastFetched('new', function(lastNewFetched, err){
+        if(err) return console.log(err);
         if (Date.now() - lastNewFetched >= millisecondsInDay) {
             getHeadlines('new');
         }
     });
     
     //in case the last fetched top headlines are over a week old
-    getLastFetched('top', function(lastTopFetched){
+    getLastFetched('top', function(lastTopFetched, err){
+        if(err) return console.log(err);
         if (Date.now() - lastTopFetched >= millisecondsInWeek) {
             getHeadlines('top');
         }
@@ -58,8 +60,8 @@ function getHeadlines(freshness) {
 
 function getLastFetched(freshness, callback) { //get last fetched from 'createdAt' column on headlines table
     HeadlineModel.find({where:{freshness: freshness}})
-        .then(headline => callback(new Date(headline.createdAt).getTime()))
-        .catch(err => 0);  
+        .then(headline => headline?callback(new Date(headline.createdAt).getTime()):callback(0))
+        .catch(err => callback(null, err));  
 }
 
 function refinePosts(freshness, responsePosts) {
@@ -68,7 +70,8 @@ function refinePosts(freshness, responsePosts) {
         responsePost = responsePost.data;
         refinedPosts.push({
             headline: responsePost.title,
-            url: responsePost.url,
+            URL: responsePost.url,
+            imageURL: responsePost.preview?responsePost.preview.images[0].source.url:'',
             subreddit: responsePost.subreddit.toLowerCase(),
             freshness: freshness,
             votes: {onion: 0, notOnion: 0}
