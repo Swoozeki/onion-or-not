@@ -11,6 +11,7 @@ module.exports = function (app) {
     //reddit api routes
     app.get('/top', headlineController.top_get);
     app.get('/new', headlineController.new_get);
+    app.get('/all', headlineController.headlines_get);
 
     app.get('*', function (req, res, next) {
         const err = new Error('404: Page not found!');
