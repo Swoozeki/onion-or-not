@@ -81,11 +81,12 @@ function refinePosts(freshness, responsePosts) {
 }
 
 function pushToDatabase(freshness, headlines) {
-    HeadlineModel.destroy({where: {freshness: freshness}})
-        .then(affectedHeadlines => {
-            console.log(`${affectedHeadlines} ${freshness} headlines were deleted!`);
-            return HeadlineModel.bulkCreate(headlines);
-        })
+    if(freshness === 'new'){
+        HeadlineModel.destroy({where: {freshness: freshness}})
+            .then(affectedHeadlines => console.log(`${affectedHeadlines} ${freshness} headlines were deleted!`))
+            .catch(err => console.log(err));
+    }
+    HeadlineModel.bulkCreate(headlines)
         .then(()=>console.log(`created ${headlines.length} ${freshness} headlines`))
         .catch(err => console.log(err));
 } 
