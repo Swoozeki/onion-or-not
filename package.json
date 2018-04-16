@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devstart": "nodemon --ignore 'static/*.js' --ignore 'src/*.js' app.js",
+    "devstart": "nodemon --ignore '/static/' --ignore '/src/' app.js",
     "start": "node app.js",
     "webpack": "webpack"
   },
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^2.0.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "pg": "^7.4.1",
