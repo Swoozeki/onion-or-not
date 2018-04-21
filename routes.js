@@ -8,6 +8,9 @@ module.exports = function (app) {
         })
     });
 
+    //manipulate DB routes
+    app.post('/:headlineId/vote', headlineController.votes_update);
+
     //reddit api routes
     app.get('/top', headlineController.top_get);
     app.get('/new', headlineController.new_get);
