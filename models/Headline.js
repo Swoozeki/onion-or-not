@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes){
         imageURL: DataTypes.STRING,
         subreddit: DataTypes.STRING,
         freshness: DataTypes.STRING,
-        votes: DataTypes.JSON
+        votes: DataTypes.JSONB
     });
 
     Headline.sync({alter: true});
