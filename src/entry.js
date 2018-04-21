@@ -12,9 +12,15 @@ class App extends React.Component{
             page: 'new'
         };
     }
+    
+    /*
+        Changes page state
+        Parameters - page:String
+    */
     changePage(page){
         this.setState({page});
     }
+
     render(){
         return(
             <div id="wrapper">

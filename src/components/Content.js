@@ -11,8 +11,12 @@ module.exports = class Content extends React.Component{
             voted: false
         };
     }
+
+    /*
+        Makes server request to update headline vote
+        Parameters - e:EventObject
+    */
     handleVote(e){
-        //make request to change vote
         fetch(`/${this.state.headline.id}/vote`, {
             method: 'POST',
             headers: new Headers({
@@ -30,6 +34,10 @@ module.exports = class Content extends React.Component{
             .catch(err => console.log(err));
         //---------
     }
+
+    /*
+        Makes server request to get headline, and sets the component's headline state to the response
+    */
     setHeadline(){
         fetch(`/${this.props.page}`)
             .then(response => {
@@ -40,16 +48,21 @@ module.exports = class Content extends React.Component{
             })
             .catch(err => console.log(err)); 
     }
+
+    //get and set headline when component initally mounts
     componentDidMount(){
         this.setHeadline();
     }
+    
+    //get and set new headline when component recieves new/updated props(mainly the page prop)
     componentWillReceiveProps(){
         this.setHeadline();
     }
     render(){   
         const {headline, voted} = this.state;
         let stage, result= null;
-        //loading screen while headline is being fetched
+
+        //show loading screen while headline is being fetched
         if(!headline){ 
             return(
                 <div id="content" className="flex flex-center">
@@ -58,6 +71,7 @@ module.exports = class Content extends React.Component{
             );
         }
 
+        //show Stage if headline hasn't been voted on, and Result if it has
         if(!voted) stage = <Stage headline={this.state.headline}/>;
         if(voted) result = <Result/>;
 

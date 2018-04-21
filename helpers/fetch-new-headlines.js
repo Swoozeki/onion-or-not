@@ -59,7 +59,7 @@ function getHeadlines(freshness) {
 }
 
 function getLastFetched(freshness, callback) { //get last fetched from 'createdAt' column on headlines table
-    HeadlineModel.find({where:{freshness: freshness}})
+    HeadlineModel.find({where:{freshness: freshness}, order: [['createdAt', 'DESC']]})
         .then(headline => headline?callback(new Date(headline.createdAt).getTime()):callback(0))
         .catch(err => callback(null, err));  
 }

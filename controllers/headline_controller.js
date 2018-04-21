@@ -1,3 +1,6 @@
+/*
+    Responds with a random top headline as JSON
+*/
 module.exports.top_get = function (req, res, next) {
     const {Headline} = req.models;
 
@@ -9,6 +12,10 @@ module.exports.top_get = function (req, res, next) {
         })
         .catch(err => next(err));
 }
+
+/*
+    Responds with a random new headline as JSON
+*/
 module.exports.new_get = function (req, res, next) {
     const {Headline} = req.models;
 
@@ -20,6 +27,10 @@ module.exports.new_get = function (req, res, next) {
         })
         .catch(err => next(err));
 }
+
+/*
+    responds with all headlines in database as an array
+*/
 module.exports.headlines_get = function (req, res, next) {
     const {Headline} = req.models;
 
@@ -27,6 +38,13 @@ module.exports.headlines_get = function (req, res, next) {
         .then(headlines => res.json(headlines))
         .catch(err => next(err));
 }
+
+/*
+    Updates vote of a particular headline in database
+    Requires a headlineId parameter as part of URL
+    Requires type and change fields as part of request body
+    Responds with updated headline
+*/
 module.exports.votes_update = function(req, res, next){
     const {Headline} = req.models;
 
