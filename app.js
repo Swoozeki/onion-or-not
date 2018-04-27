@@ -38,7 +38,4 @@ require('./helpers/fetch-new-headlines.js')(Headline);
 //import routes
 require('./routes.js')(app);
 
-app.listen(8000, err => {
-    if(err) return console.log(err);
-    else console.log('Server started at localhost:8000');
-});
+module.exports = app;
