@@ -1,6 +1,5 @@
 import React from 'react';
 import Stage from './Stage';
-import Result from './Result';
 import Vote from './Vote';
 
 module.exports = class Content extends React.Component{
@@ -39,12 +38,13 @@ module.exports = class Content extends React.Component{
         Makes server request to get headline, and sets the component's headline state to the response
     */
     setHeadline(){
+        this.setState({headline:null, voted: false})
         fetch(`/${this.props.page}`)
             .then(response => {
                 return response.json()
             })
             .then(headline => {
-                return this.setState({headline, voted: false});
+                return this.setState({headline});
             })
             .catch(err => console.log(err)); 
     }
@@ -60,7 +60,6 @@ module.exports = class Content extends React.Component{
     }
     render(){   
         const {headline, voted} = this.state;
-        let stage, result= null;
 
         //show loading screen while headline is being fetched
         if(!headline){ 
@@ -71,17 +70,10 @@ module.exports = class Content extends React.Component{
             );
         }
 
-        //show Stage if headline hasn't been voted on, and Result if it has
-        if(!voted) stage = <Stage headline={this.state.headline}/>;
-        if(voted) result = <Result/>;
-
         return(
-            <div id="content" className='flex flex-column flex-center'>
-                {stage}
-                <Vote votes={this.state.headline.votes} 
-                    voted={this.state.voted} 
-                    handleVote={this.handleVote.bind(this)}/>
-                {result}
+            <div id="content" className="flex flex-column flex-center">
+                <Stage voted={voted} headline={this.state.headline}/>
+                <Vote voted={voted} votes={headline.votes} handleVote={this.handleVote.bind(this)}/>
             </div>
         )
 

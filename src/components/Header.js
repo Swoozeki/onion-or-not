@@ -4,7 +4,7 @@ module.exports = function Header(props){
     const {page} = props;
 
     return(
-        <div id="header" className="fixed-top">
+        <div id="header">
             <img id="logo" src="media/logo6.png" alt="here lies the logo"/>
             <ul id="menu">
                 <li id="new" className={page==='new'?'active':''} onClick={()=>props.changePage('new')}>

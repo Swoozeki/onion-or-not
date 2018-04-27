@@ -1,11 +1,29 @@
 import React from 'react';
 
 module.exports = function Stage(props){
-    const {headline: title, imageURL} = props.headline;
+    const {voted} = props;
+    const {headline: title, imageURL, subreddit} = props.headline;
+
+    const titleComponent = (
+        <h1 id="title" className={voted?(subreddit==='theonion'?'onion-color':'not-onion-color'):null}>
+            {voted?<a target="_blank" href={props.headline.URL}>{title}</a>:title}
+        </h1>
+    );
+
+    //reveals whether title is onion or not
+    let revealComponent = null;
+    if(voted)
+        revealComponent = (
+            <h1 id="reveal" className={`slide-right ${subreddit==='theonion'?'onion-bg-color':'not-onion-bg-color'}`}>
+                {subreddit==='theonion'?'ONION':'NOT ONION'}
+            </h1>
+        );
+
     return (
-        <React.Fragment>
-            <h1 id="title">{title}</h1>
+        <div id="stage">
+            {revealComponent}
+            {titleComponent}
             {imageURL?<img src={imageURL}/>:null}
-        </React.Fragment>
+        </div>
     );
 }

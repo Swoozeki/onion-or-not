@@ -11,12 +11,14 @@ body{
     position: fixed;
     top: 0;
 }
-#vote.fixed-top{
-    top: 100px;
-}
 .flex{
     display: flex;
-    
+}
+.flex-align-center{
+    align-items: center;
+}
+.flex-justify-center{
+    justify-content: center;
 }
 .flex-center{
     align-items: center;
@@ -28,9 +30,35 @@ body{
 .flex-row{
     flex-direction: row;
 }
-#wrapper{
-    height: 100vh;
+.onion-color{
+    color: #d35400;
 }
+.not-onion-color{
+    color: #2980b9;
+}
+.onion-bg-color{
+    background-color: #d35400;
+}
+.not-onion-bg-color{
+    background-color: #2980b9;
+}
+.slide-right{
+    animation: slide-right 500ms cubic-bezier(.68,-0.55,.27,1.55);
+}
+@keyframes slide-right{
+    from{
+        transform: translateX(-2000px);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+#wrapper{
+}
+
 /* Header component CSS */
 #header{
     display: grid;
@@ -39,6 +67,7 @@ body{
 
     width: 100%;
     background-color: #000;
+    z-index: 1;
 }
 #header #logo{
     height: 100px;
@@ -66,27 +95,28 @@ body{
 
 /* Content component CSS */
 #content{
-    height: calc(100% - 100px);
-    transform: translateY(100px);
+    margin-bottom: 100px;
 }
-#content #title{
+#stage{
     max-width: 700px;
     text-align: center;
 }
-#content img{
-    max-width: 700px;
+#stage #title a{
+    color: inherit;
+}
+#stage img{
+    width: 100%;
 }
 #vote{
     width: 100%;
-
     display: flex;
-}
-#vote.voted{
-    pointer-events: none;
+    box-shadow: 0 0 5px #000;
 }
 .vote-button{
+    overflow: hidden;
     height: 100px;
-    transition: width 500ms;
+    width: 50%;
+    transition: width 500ms ease-in-out, height 500ms ease-in-out;
 
     display: flex;
     align-items: center;
@@ -112,21 +142,15 @@ body{
 }
 
 @media(max-width: 700px){
-    #content{
-        height: auto;
-    }
-    #content #title{
+    #stage #title{
         padding: 0 5px;
-    }
-    #content img{
-        width: 100%;
     }
 }
 @media(max-width: 400px){
     #header #logo{
         height: 75px;
     }
-    #title{
+    #title, #reveal{
         font-size: 24px;
     }
 }

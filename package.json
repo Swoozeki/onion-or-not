@@ -13,14 +13,12 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
-    "bcrypt": "^2.0.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
-    "request": "^2.85.0",
     "sequelize": "^4.37.5"
   },
   "devDependencies": {
