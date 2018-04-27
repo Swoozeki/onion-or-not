@@ -42,6 +42,9 @@ body{
 .not-onion-bg-color{
     background-color: #2980b9;
 }
+.unclickable{
+    pointer-events: none;
+}
 .slide-right{
     animation: slide-right 500ms cubic-bezier(.68,-0.55,.27,1.55);
 }

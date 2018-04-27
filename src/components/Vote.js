@@ -12,7 +12,7 @@ module.exports = function(props){
     }
 
     return(
-        <div id="vote" className="fixed-bottom">
+        <div id="vote" className={`fixed-bottom ${voted?'unclickable':null}`}>
             <div id="onion" className="vote-button"
                 data-type="onion" onClick={handleVote}
                 style={voted?style.onion:null}>
