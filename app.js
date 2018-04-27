@@ -23,12 +23,12 @@ app.use((req, res, next) => {
 /*
     Setup the app with several useful third-party middlewares
     Helmet - to protect against well-known vulnerabilities
-    Logger - to log http requests to console
+    Logger - to log http requests to console. Only on development environment
     Express Static - to load static content from /static/
     BodyParser - to populate http request body in Request.body to be accessibly from any middleware
 */
 app.use(helmet());
-app.use(logger('tiny'));
+if(process.env.NODE_ENV!=='production') app.use(logger('tiny'));
 app.use(express.static('./static'));
 app.use(bodyParser.json(), bodyParser.urlencoded({extended:false}));
 
